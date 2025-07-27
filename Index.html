@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Channels and Playlists</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2;
+            padding: 2;
+            background-color: #f0f0f0;
+            position: relative;
+            min-height: 100vh; /* Ensure the body is at least as tall as the viewport */
+        }
+        #channelsContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+  
+
+  
+  
+  
+        
+#channelsContainer button {
+    margin: 6px;
+    padding: 12px;
+    width: 160px; /* Fixed width for each button */
+    height: 80px; /* Fixed height for each button */
+    background-color: #ffffff;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    font-size: 15px;
+    font-weight: bold;
+    flex-grow: 1;
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+#channelsContainer button img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 5px; /* Adjust the margin to create space between the image and text */
+}
+          
+        }.channel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+  
+        
+        #channelsContainer button:hover {
+            background-color: #B2BABB;
+        }
+        
+        #videosContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+  
+        
+        .video {
+            width: 365px;
+            margin: 0px;
+            padding: 5px;
+            background-color: #fff;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .video iframe {
+            width: 100%;
+            height: 200px;
+        }
+
+.playlistButtonContainer {
+    position: relative;
+    width:200px;
+    
+
+}
+        .video h2 {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        
+        .video p {
+            font-size: 15px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        #loadMoreButton {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #loadMoreButton button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #loadMoreButton button:hover {
+            background-color: #0056b3;
+        }
+  
+  
+  #header {
+            text-align: left;
+            margin-bottom: 20px;
+            margin-left:20px;
+            font-size: 15px;
+            color: #333;
+        }
+
+        #greeting {
+            font-weight: italic;
+            color: #76b5c5;
+        }
+
+
+  
+    </style>
+</head>
+<body>
+  
+   <div id="header">
+        <h1 id="greeting"></h1>
+    </div>
+  
+    <div id="channelsContainer">
+        <!-- Placeholder for channel buttons -->
+        <button onclick="fetchVideos('UCNn75PJi2J5OmZGuLCZGJPg')">
+            <img src="mathongo1.png" alt="Mathongo Logo">
+            Mathongo
+        </button>
+        <button onclick="fetchVideos('UCgBmfNILAlXmGv3CsJ8oFJA')">
+            <img src="physicsgalaxy1.png" alt="Physics Galaxy Logo">
+            Physics Galaxy
+        </button>
+        <button onclick="fetchVideos('UCcMU5NE1Lmf4Fqpx7n9F3Sw')">
+            <img src="nexusjee1.png" alt="Nexus JEE Logo">
+            Nexus JEE
+        </button>
+        <button onclick="fetchVideos('UChbgwNStwEW8CdeuRl-JaXQ')">
+            <img src="lakshyajee1.png" alt="Lakshya JEE Logo">
+            Lakshya JEE
+        </button>
+        <button onclick="fetchVideos('UCHWna16c7Ff0mY_QBVF2rXQ')">
+            <img src="mathsunplugged1.png" alt="Maths Unplugged Logo">
+            Maths Unplugged
+        </button>
+        <button onclick="fetchVideos('UC7px6OmooQLmsJlYACR_n-A')">
+            <img src="eduniti1.png" alt="Eduniti Logo">
+            Euniti
+        </button>
+        <button onclick="fetchVideos('UCDG_YP69cl42ly3pPy8-Liw')">
+            <img src="voraclasses1.png" alt="Vora Classes Logo">
+            Vora Classes
+        </button>
+        
+        <!-- Placeholder for playlists -->
+        <button onclick="fetchPlaylistVideos('PPLkCsnlRdVyw36jdR4RFLMcb-gc9aHWg1y&si=sSq0gN9cOKHHv6Sl')">
+            Python Playlist
+        </button>
+        <button onclick="fetchPlaylistVideos('PLNxp6xENhIPb9Rmw8f5H7p3m0SavGxIyt&si=msIoxr0D20GRK3TD')">
+            RY Sir Live
+        </button>
+        <button onclick="fetchPlaylistVideos('PLrHjxIp47OtV-kR3ZlkHEyU8aAZxVB2C8&si=BBglScgtZTeLEaCU')">
+            Master OC
+        </button>
+        <button onclick="fetchPlaylistVideos('PLNxp6xENhIPYLSAR3z1QBMKFSLwYQthUd&si=b9Dcbs0CoqM7DN98')">
+            175 Most Prdctble
+        </button>
+        <button onclick="fetchPlaylistVideos('PLYVDsiuOZP5o7T58PG8SUiKECCzbY37J9&si=SGFY0qaoV_gK9adG')">
+          Advanced Booster  
+        </button>
+      <button onclick="fetchPlaylistVideos('PLYVDsiuOZP5o8VsGq7A3x-BV_VyDrMVrO&si=870_6EejQU-0-oWh')">
+          Short Notes  
+        </button>
+      <button onclick="fetchPlaylistVideos('PLnG6YW15b0oTYICjw7pbIwlwzFjzzfAHc&si=GralMvHFnUh_iFPm')">
+            JEE Brief
+        </button>
+      <button onclick="fetchPlaylistVideos('PLYFlGICvnvLi-6VMmu2Safry84f-jXoOX&si=npkOJxsYRdgC6fE1')">
+           Bounce Back 
+        </button>
+    </div>
+  
+  
+    
+
+    <div id="videosContainer">
+        <!-- Placeholder for videos -->
+    </div>
+
+    <div id="loadMoreButton">
+        <button onclick="loadMoreVideos()">Load More</button>
+    </div>
+
+    <script>
+// JavaScript to display greeting based on time of day
+        const now = new Date();
+        const hour = now.getHours();
+        let greeting;
+
+        if (hour < 12) {
+            greeting = "Good morning Anand Raj!";
+        } else if (hour < 18) {
+            greeting = "Good afternoon Anand Raj!";
+        } else {
+            greeting = "Good evening Anand Raj!";
+        }
+
+        document.getElementById("greeting").innerText = greeting;
+
+  
+  
+// YouTube Data API key
+const apiKey = 'AIzaSyD2_5JK0acvRSkblX46u0Bq1wkCg08UINQ';
+
+// Number of videos to fetch per request
+const maxResults = 12;
+
+// Variable to keep track of the next page token
+let nextPageToken = '';
+
+// Variable to store current channel ID
+let currentChannelId = '';
+
+// Function to fetch and display videos from channels
+function fetchVideos(channelId, pageToken = '') {
+    currentChannelId = channelId;
+
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=${maxResults}&pageToken=${pageToken}`)
+        .then(response => response.json())
+        .then(data => {
+            const videos = data.items;
+            nextPageToken = data.nextPageToken;
+
+            const videosContainer = document.getElementById('videosContainer');
+
+            if (pageToken === '') {
+                videosContainer.innerHTML = '';
+            }
+
+            videos.forEach(video => {
+                const videoId = video.id.videoId;
+                const videoTitle = video.snippet.title;
+                const videoDate = new Date(video.snippet.publishedAt).toLocaleDateString();
+
+                const videoElement = document.createElement('div');
+                videoElement.classList.add('video');
+                videoElement.id = `video-${videoId}`;
+
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+                iframe.frameborder = '0';
+                iframe.allowfullscreen = true;
+
+                const titleElement = document.createElement('h2');
+                titleElement.innerText = videoTitle;
+
+                const dateElement = document.createElement('p');
+                dateElement.innerText = 'Date: ' + videoDate;
+
+                const durationElement = document.createElement('p');
+                durationElement.id = `duration-${videoId}`;
+
+                videoElement.appendChild(iframe);
+                videoElement.appendChild(titleElement);
+                videoElement.appendChild(dateElement);
+                videoElement.appendChild(durationElement);
+
+                videosContainer.appendChild(videoElement);
+
+                fetchVideoDetails(videoId); // Fetch and display video duration
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching videos:', error);
+        });
+}
+
+// Function to fetch video details (duration) and display it
+function fetchVideoDetails(videoId) {
+    fetch(`https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoId}&part=contentDetails`)
+        .then(response => response.json())
+        .then(data => {
+            const duration = data.items[0].contentDetails.duration;
+            const durationString = formatDuration(duration);
+            const durationElement = document.getElementById(`duration-${videoId}`);
+            durationElement.innerText = 'Duration: ' + durationString;
+        })
+        .catch(error => {
+            console.error('Error fetching video details:', error);
+        });
+}
+
+// Function to format video duration
+function formatDuration(duration) {
+    const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/);
+
+    const hours = (parseInt(match[1]) || 0);
+    const minutes = (parseInt(match[2]) || 0);
+    const seconds = (parseInt(match[3]) || 0);
+
+    let formattedDuration = '';
+
+    if (hours > 0) {
+        formattedDuration += hours + 'h ';
+    }
+
+    if (minutes > 0) {
+        formattedDuration += minutes + 'm ';
+    }
+
+    if (seconds > 0) {
+        formattedDuration += seconds + 's';
+    }
+
+    return formattedDuration.trim();
+}
+
+// Function to load more videos
+function loadMoreVideos() {
+    if (currentChannelId !== '') {
+        if (currentChannelId.startsWith('PL')) {
+            // If the current channel ID starts with 'PL', it's a playlist ID
+            fetchPlaylistVideos(currentChannelId, nextPageToken);
+        } else {
+            // Otherwise, it's a channel ID
+            fetchVideos(currentChannelId, nextPageToken);
+        }
+    }
+}
+          </script>
+ <script src="https://www.youtube.com/iframe_api"></script>
+
+</body>
+</html>
